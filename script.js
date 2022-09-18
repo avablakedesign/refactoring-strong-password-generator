@@ -15,8 +15,8 @@ var specialCharSelected;
 function generatePassword () {
   passwordLength = prompt("Enter the number of characters for your password.");
   // 16 characters minimum is considered secure and a strong password if it has upper, lower, numbers and special characters.
-  if (!(passwordLength >= 16 && passwordLength <= 256)) { 
-      alert ("The password must be from 16-256 characters. Try again");
+  if (!(passwordLength >= 8 && passwordLength <= 128)) { 
+      alert ("The password must be from 8-128 characters. Try again");
       return;
     }   
   else {
