@@ -9,10 +9,11 @@ const uppercaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 const specialChar = "!@#$%^&*(){}[]=+-_/?<>`~";
 var lowercaseSelected;
 var uppercaseSelected;
-var numberSelected;
+var numbersSelected;
 var specialCharSelected;
 // This function asks a series of prompts and then generates a string that is later randomized.
 function generatePassword () {
+  password = "";
   passwordLength = prompt("Enter the number of characters for your password.");
   // 16 characters minimum is considered secure and a strong password if it has upper, lower, numbers and special characters.
   if (!(passwordLength >= 8 && passwordLength <= 128)) { 
@@ -26,17 +27,22 @@ function generatePassword () {
       specialCharSelected = confirm("Would you like to add special characters to your password?"); 
   } 
   // Here are a bunch of if statements that hook into the prompts to change the password string.
-  if (!lowercaseSelected && !uppercaseSelected) {
-    alert("You must select atleast one character type at minimum.");
-  } else {
-  // These asre strictly equal to reduce having errors later on.
+  if (!lowercaseSelected && !uppercaseSelected && !numbersSelected && !specialCharSelected) {
+      alert("You must select at least one character type at minimum.");
+      return;
+    } 
+  else {
+  // These are strictly equal to reduce having errors later on.
     if (lowercaseSelected === true) {
       password += lowercaseLetters;
-  } if (uppercaseSelected === true) {
+    } 
+    if (uppercaseSelected === true) {
       password += uppercaseLetters;
-  } if (numbersSelected === true) {
+    } 
+    if (numbersSelected === true) {
       password += numbers;
-  } if (specialCharSelected === true) {
+    } 
+    if (specialCharSelected === true) {
       password += specialChar;   
     }  
   }
@@ -51,8 +57,8 @@ var generateBtn = document.querySelector("#generate");
 // Write password to the #password input
 // This function connects to the previous function and then a for loop randomizes the string.
 function writePassword() {
-  var password = generatePassword();
-  var showPassword = "";
+  let password = generatePassword();
+  let showPassword = "";
 // Math.floor and Math.random are used to randomize.
   for (let x = 0; x < passwordLength; x++) {
     let randomChar = Math.floor(Math.random() * password.length);
